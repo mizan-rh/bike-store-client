@@ -1,3 +1,4 @@
+/* #EA1D25 , #FF541F */
 /* bg-dark */
 .bgDark {
   background-color: #191919;
@@ -9,4 +10,25 @@
 
 .card:hover .view-btn {
   display: block;
+}
+
+/*  */
+.bg-card {
+  margin: 8px;
+}
+.db .bg-card:hover {
+  background-color: #191919;
+  color: #fff;
+  transition: 0.5s;
+}
+.db .bg-card > div {
+  padding: 0 16px !important;
+}
+
+.tracking-tight {
+  font-size: 16px;
+}
+
+.bg-card > p {
+  font-size: 18px !important;
 }

@@ -1,27 +1,30 @@
-// import bikeImge from "@/assets/images/home/bike-1.jpg";
-import { Badge } from "@/components/ui/badge";
+import { useLocation } from "react-router-dom";
 import { useAllProductsQuery } from "@/redux/features/products/productApi";
+// import { IBikeResponse } from "@/types/types";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import LoadingSkelton from "../shared/LoadingSkelton";
 import { TbListDetails } from "react-icons/tb";
 import { BiCart } from "react-icons/bi";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
-const NewProducts = () => {
-  const { data, isLoading } = useAllProductsQuery(undefined);
+import Loading from "@/components/Loading";
+const Category = () => {
   const dispatch = useAppDispatch();
-  // console.log(isError, "all products");
-  if (isLoading) {
-    return <LoadingSkelton />;
-  }
+  const location = useLocation();
+  const searchTerm = new URLSearchParams(location.search).get("query") || "";
+
+  const { data, isLoading } = useAllProductsQuery({ searchTerm });
+
+  if (isLoading) return <Loading />;
+
   return (
-    <div className="">
-      {/* Product Cards */}
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 py-20 px-4 md:px-8">
+    <div className="p-6 my-10 min-h-screen">
+      <h1 className="text-2xl font-bold my-4"> Categorise: {searchTerm}</h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data?.data?.map((product) => (
           <div
             key={product?._id}
-            className="card bg-white hover:shadow-lg hover:rounded-md cursor-pointer  overflow-hidden transition-all text-center"
+            className="card bg-white hover:shadow-lg hover:rounded-md cursor-pointer  overflow-hidden transition-all text-center my-2"
           >
             <div className="relative">
               <img
@@ -85,8 +88,15 @@ const NewProducts = () => {
           </div>
         ))}
       </div>
+      {/*  */}
+
+      {data?.data?.length === 0 && (
+        <div className="text-center text-gray-500 mt-6">
+          No products found in {searchTerm} category.
+        </div>
+      )}
     </div>
   );
 };
 
-export default NewProducts;
+export default Category;

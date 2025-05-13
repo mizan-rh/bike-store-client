@@ -25,6 +25,8 @@ import Login from "../pages/Login";
 //import { Contact } from "lucide-react";
 import Contact from "@/pages/Contact";
 import NotFoundPage from "../pages/NotFoundPage";
+import SearchResults from "@/components/filter/SearchResults";
+import Category from "@/pages/Category";
 
 export const router = createBrowserRouter([
   {
@@ -37,8 +39,16 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/search-results",
+        element: <SearchResults />,
+      },
+      {
         path: "/bikes",
         element: <AllProducts />,
+      },
+      {
+        path: "/bikes/categorys",
+        element: <Category />,
       },
       {
         path: "/details/:id",
@@ -80,6 +90,14 @@ export const router = createBrowserRouter([
       {
         path: "/faqs",
         element: <FAQPage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />,
       },
     ],
   },
@@ -135,14 +153,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <SignUpPage />,
-  },
+
   {
     path: "*",
     element: <NotFoundPage />,

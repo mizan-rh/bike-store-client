@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { BiCartAdd } from "react-icons/bi";
 
 import { Link, useLocation } from "react-router-dom";
 import { ProfileDropdown } from "./ProfileDropdown";
@@ -15,7 +14,7 @@ import {
 import { TUser } from "@/types/types";
 
 // brand fro logo
-import brand from "@/assets/images/logo/Bike_Shop_Logo.png";
+import brand from "@/assets/images/logo/Bike_Shop_Logo.svg";
 //
 
 import { selectCurrentToken } from "@/redux/features/auth/authSlice";
@@ -23,14 +22,11 @@ import { useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { verifyToken } from "@/utils/verifyToken";
 import { useEffect, useState } from "react";
-
-const menuList = [
-  { id: 1, name: "HOME", link: "/" },
-  { id: 2, name: "All PRODUCTS", link: "/bikes" },
-  { id: 3, name: "SERVICES", link: "/service" },
-  { id: 4, name: "ABOUT", link: "/about" },
-  { id: 5, name: "CONTACT", link: "/contact" },
-];
+import { menuList } from "@/utils/menu";
+import Filter from "@/components/filter/Filter";
+import { useNavigate } from "react-router-dom";
+import { MdShoppingBag } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
 //
 const Navbar = () => {
@@ -47,6 +43,14 @@ const Navbar = () => {
       setHeader(false);
     }
   };
+  //
+  const navigate = useNavigate();
+  const [hoveredMenu, setHoveredMenu] = useState<number | null>(null);
+
+  const handleCategoryClick = (category: string) => {
+    navigate(`bikes/categorys?query=${category}`);
+  };
+  //
 
   useEffect(() => {
     window.addEventListener("scroll", scrollHeader);
@@ -60,11 +64,13 @@ const Navbar = () => {
   const CartIcon = (
     <Link
       to="/cart"
-      className="relative p-2 transition-all duration-300 hover:scale-105 text-lg"
+      className="relative p-0 transition-all duration-300 hover:scale-105 text-lg"
     >
-      <BiCartAdd className={header ? "w-8 h-8 text-white" : "text-black"} />
+      <MdShoppingBag
+        className={header ? "text-black text-3xl" : "text-black text-3xl"}
+      />
 
-      <span className="absolute px-2 py-1 text-xs text-white bg-red-600 rounded-full -top-2 -right-2">
+      <span className="absolute px-1 py-0.5 text-xs text-white font-black rounded-full left-2 top-[10px]">
         {cartData?.items?.length}
       </span>
     </Link>
@@ -77,11 +83,11 @@ const Navbar = () => {
       <section
         className={
           header
-            ? " fixed top-0 z-50 shadow-sm py-4 bgDark text-white w-full px-4 lg:px-20"
-            : " shadow-sm bg-white py-4 px-4 lg:px-20"
+            ? " fixed top-0 z-50 shadow-md py-2 bg-white w-full px-4 lg:px-20"
+            : " shadow-sm bg-white text-blck py-4 md:py-2 px-4 lg:px-20"
         }
       >
-        <div className="container flex items-center justify-between px-4 mx-auto lg:px-0">
+        <div className="container flex gap-8 items-center justify-between px-4 mx-auto lg:px-0">
           {/* Left Side - Logo */}
           <div className="flex items-center">
             <Link to={"/"}>
@@ -96,23 +102,60 @@ const Navbar = () => {
           </div>
 
           {/* Middle - Navigation Links */}
-          <nav className="items-center hidden gap-6 lg:flex">
-            <ul className="flex gap-6 font-bold text-base">
-              {menuList.map((item) => (
-                <li className="relative group" key={item.id}>
-                  <Link to={item.link}>
-                    <span
-                      className={`cursor-pointer hover:text-[#FF0000] transition-all duration-300 ${
-                        item.link === location.pathname ? "text-[#FF0000]" : ""
-                      }`}
-                    >
-                      {item.name}
-                    </span>
-                  </Link>
-                  <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#FF0000] transition-all duration-300 group-hover:w-full"></span>
-                </li>
-              ))}
-            </ul>
+          <nav className="w-full md:w-2/4 md:flex flex-col justify-center gap-2 text-center py-2 hidden relative">
+            {/* top */}
+            <div className={header ? "hidden" : ""}>
+              <Filter />
+            </div>
+            {/* bottom */}
+            <div className="py-1">
+              <ul className="flex flex-wrap capitalize gap-2 py-1 font-semibold text-base justify-center ">
+                {menuList.map((item) => (
+                  <li
+                    key={item.id}
+                    onMouseEnter={() => setHoveredMenu(item.id)}
+                    onMouseLeave={() => setHoveredMenu(null)}
+                    className={`inline-block relative px-1 pb-1 cursor-pointer transition-colors duration-300 ${
+                      item.link === location.pathname
+                        ? "text-[#FF0000]"
+                        : "text-black"
+                    } hover:text-[#FF0000]`}
+                  >
+                    <Link to={item.link}>
+                      <span
+                        className={`inline-block relative px-1 pb-1 cursor-pointer transition-colors duration-300 ${
+                          item.link === location.pathname
+                            ? "text-[#FF0000]"
+                            : "text-black"
+                        } hover:text-[#FF0000]`}
+                      >
+                        {item.name}
+                      </span>
+                    </Link>
+
+                    {item.children && hoveredMenu === item.id && (
+                      <div className="absolute left-0 top-8 z-40 py-3 transition decoration-500 ease-in bg-white">
+                        <ul className=" grid grid-cols-2 gap-4 group-hover:flex bg-white p-6 w-96 text-left">
+                          {item.children.map((child, index) => (
+                            <li key={index}>
+                              <button
+                                onClick={() =>
+                                  handleCategoryClick(child.category)
+                                }
+                                className="text-gray-700 hover:text-[#FF0000] whitespace-nowrap transition-colors duration-200"
+                              >
+                                {child.name}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/*  */}
           </nav>
 
           {/* Right Side - Cart & Login/Profile */}
@@ -124,9 +167,9 @@ const Navbar = () => {
               <ProfileDropdown user={isUser as TUser} />
             ) : (
               <Link to="/login">
-                <Button className="h-10 text-lg font-medium text-black capitalize bg-white border-2 shadow-none hover:shadow-md hover:text-white">
-                  Log in
-                </Button>
+                <div className="text-xl mt-[1px]">
+                  <FaUser />
+                </div>
               </Link>
             )}
           </div>
@@ -181,20 +224,48 @@ const Navbar = () => {
 
                 {/* Mobile Menu List */}
                 <div className="flex flex-col gap-4 mt-6 mb-6">
-                  <ul className="flex flex-col gap-6 font-semibold">
+                  <ul className="block capitalize gap-2 py-1 font-semibold text-base justify-center ">
                     {menuList.map((item) => (
-                      <li className="relative group" key={item?.id}>
+                      <li
+                        key={item.id}
+                        onMouseEnter={() => setHoveredMenu(item.id)}
+                        onMouseLeave={() => setHoveredMenu(null)}
+                        className={`relative px-4 py-2 cursor-pointer transition-colors duration-300 ${
+                          item.link === location.pathname
+                            ? "bg-[#FF0000]"
+                            : "text-white"
+                        } hover:text-[#FF0000] `}
+                      >
                         <Link to={item.link}>
                           <span
-                            className={`cursor-pointer hover:text-primary-red transition-all duration-300 ${
+                            className={`inline-block relativecursor-pointer transition-colors duration-300 ${
                               item.link === location.pathname
-                                ? "text-primary-red"
-                                : ""
-                            }`}
+                                ? "bg-[#FF0000] text-[#fff]"
+                                : "text-black"
+                            } hover:text-[#FF0000]`}
                           >
                             {item.name}
                           </span>
                         </Link>
+
+                        {item.children && hoveredMenu === item.id && (
+                          <div className=" transition decoration-500 ease-in bg-white">
+                            <ul className=" group-hover:flex bg-white px-2 py-2 text-left">
+                              {item.children.map((child, index) => (
+                                <li key={index}>
+                                  <button
+                                    onClick={() =>
+                                      handleCategoryClick(child.category)
+                                    }
+                                    className="text-gray-700 hover:text-[#FF0000] whitespace-nowrap transition-colors duration-200"
+                                  >
+                                    {child.name}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ul>
