@@ -13,8 +13,8 @@ import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { selectCurrentUser, setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // Form validation schema
 const formSchema = z.object({
@@ -32,8 +32,8 @@ const demoAdmin = {
 };
 
 const demoUser = {
-  email: "user@demo.com",
-  password: "user123",
+  email: "ahmed@gmail.com",
+  password: "123456",
 };
 
 export default function LoginPreview() {
