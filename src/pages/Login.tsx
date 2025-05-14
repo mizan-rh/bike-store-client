@@ -27,8 +27,8 @@ const formSchema = z.object({
 
 // Demo credentials
 const demoAdmin = {
-  email: "adminBikes@gmail.com",
-  password: "adminBikes",
+  email: "mizan@gmail.com",
+  password: "123123",
 };
 
 const demoUser = {
