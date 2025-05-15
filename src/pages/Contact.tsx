@@ -1,16 +1,18 @@
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import {
-  FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
-  //FaFacebookF,
-  FaUserTie,
+  FaPhoneAlt,
   FaTools,
+  FaUserTie,
 } from "react-icons/fa";
+import { toast } from "sonner";
+import { z } from "zod";
 
+import CustomInputField from "@/components/custom-input/CustomInputField";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -19,10 +21,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import CustomInputField from "@/components/custom-input/CustomInputField";
 import { Helmet } from "react-helmet-async";
 
 const formSchema = z.object({
@@ -56,137 +55,134 @@ export default function ContactFormPreview() {
   }
 
   return (
-    <div className=" text-black md:py-20">
-      {/* title */}
-      <div className="">
-        <Helmet>
-          <title>Contact Us - Bike Shop || Online Delivary</title>
-        </Helmet>
-      </div>
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-4 uppercase">
-          contact with us
-        </h2>
-        <div className="flex items-center justify-center m-4">
-          <div className="w-12 h-0.5 bg-orange-600 mr-2"></div>
-          <div className="w-3 h-3 rotate-45 bg-orange-600"></div>
-          <div className="w-12 h-0.5 bg-orange-600 ml-2"></div>
-        </div>
-        <p className="text-center text-black opacity-60 max-w-xl mx-auto mb-10">
-          If you would like to find out more about how we can help you, please
-          give us a call or drop us an email. We welcome your comments and
-          suggestions about this website and/or any other issues you wish to
-          raise.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Left Column - Contact Info */}
-          <div className="p-8 rounded-md space-y-4 text-base">
-            <h3 className="text-xl font-semibold mb-2">Contact information</h3>
-
-            <div className="space-y-2">
-              <p className="flex items-center gap-2">
-                <FaPhoneAlt className="text-blue-400" />
-                +8801994361085, +8801829662328, +8801914163150, +8801719313438
-              </p>
-              <p className="flex items-center gap-2">
-                <FaEnvelope className="text-blue-400" />
-                bikeShop25@gmail.com
-              </p>
-              <p className="flex items-start gap-2">
-                <FaMapMarkerAlt className="text-blue-400 mt-1" />
-                DHaka, Bangladesh
-              </p>
-            </div>
-
-            <div className="mt-6 space-y-2">
-              <p className="flex items-center gap-2">
-                <FaEnvelope className="text-blue-400" />
-                <strong>Billing enquiries:</strong> accounts@bikeShop25.com
-              </p>
-              <p className="flex items-center gap-2">
-                <FaTools className="text-blue-400" />
-                <strong>Technical enquiries:</strong> noc@bikeShop25.com
-              </p>
-              <p className="flex items-center gap-2">
-                <FaEnvelope className="text-blue-400" />
-                <strong>New connection:</strong> sales@dotinternetbd.com
-              </p>
-              <p className="flex items-center gap-2">
-                <FaUserTie className="text-blue-400" />
-                <strong>Management:</strong> admin@bikeShop25.com
-              </p>
-            </div>
-
-            {/* Social Buttons */}
-            <div className="flex gap-4 mt-6">
-              <Button className="bg-black px-4 py-1">Page</Button>
-              <Button className="bg-black px-4 py-1">Group</Button>
-            </div>
+    <div className="py-20 text-gray-800 bg-gray-50">
+      <Helmet>
+        <title>Contact Us - Bike Shop || Online Delivery</title>
+      </Helmet>
+      <div className="px-6 mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl font-bold uppercase text-primary">
+            Contact Us
+          </h2>
+          <div className="flex items-center justify-center mt-4">
+            <span className="w-16 h-1 mr-2 bg-orange-500"></span>
+            <span className="w-3 h-3 rotate-45 bg-orange-500"></span>
+            <span className="w-16 h-1 ml-2 bg-orange-500"></span>
           </div>
+          <p className="max-w-2xl mx-auto mt-6 text-gray-600">
+            If you would like to find out more about how we can help you, give
+            us a call or drop an email. We welcome your comments and
+            suggestions.
+          </p>
+        </div>
 
-          {/* Right Column - Form */}
-          <div className="bg-[#ebeef5] p-10 rounded-md shadow-md">
-            {/* Contact Form */}
-            <Card className="mx-auto w-full">
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Contact Info */}
+          <div className="space-y-3">
+            <Card>
               <CardHeader>
-                <CardTitle className="text-2xl text-center">
-                  Contact Us
-                </CardTitle>
+                <CardTitle className="text-xl">Contact Information</CardTitle>
               </CardHeader>
-              <CardContent>
-                <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
-                  >
-                    <div className="grid gap-4">
-                      {/* Name Field */}
-                      <CustomInputField
-                        name="name"
-                        label="Full Name"
-                        placeholder="Enter Full Name"
-                        type="text"
-                        control={form.control}
-                      />
+              <CardContent className="space-y-4 text-base">
+                <div className="flex items-start gap-3">
+                  <FaPhoneAlt className="mt-1 text-primary" />
+                  <p>
+                    +8801994361085, +8801829662328, +8801914163150,
+                    +8801719313438
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <FaEnvelope className="mt-1 text-primary" />
+                  <p>bikeShop25@gmail.com</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <FaMapMarkerAlt className="mt-1 text-primary" />
+                  <p>Dhaka, Bangladesh</p>
+                </div>
 
-                      {/* Email Field */}
-                      <CustomInputField
-                        name="email"
-                        label="Email"
-                        placeholder="Enter email address"
-                        type="email"
-                        control={form.control}
-                      />
+                <hr className="my-4" />
 
-                      {/* Message Field */}
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem className="grid gap-2">
-                            <FormLabel htmlFor="message">Message</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                id="message"
-                                placeholder="Your message..."
-                                autoComplete="off"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <FaEnvelope className="mt-1 text-primary" />
+                    <p>
+                      <strong>Billing:</strong> accounts@bikeShop25.com
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FaTools className="mt-1 text-primary" />
+                    <p>
+                      <strong>Technical:</strong> noc@bikeShop25.com
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FaEnvelope className="mt-1 text-primary" />
+                    <p>
+                      <strong>Sales:</strong> sales@bikshopbd25.com
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <FaUserTie className="mt-1 text-primary" />
+                    <p>
+                      <strong>Management:</strong> admin@bikeShop25.com
+                    </p>
+                  </div>
+                </div>
 
-                      <Button type="submit" className="w-full">
-                        Send Message
-                      </Button>
-                    </div>
-                  </form>
-                </Form>
+                <div className="flex gap-4 mt-6">
+                  <Button variant="outline">Visit Page</Button>
+                  <Button variant="outline">Join Group</Button>
+                </div>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Contact Form */}
+          <div className="px-8 py-2 bg-white rounded-lg shadow-md">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-3"
+              >
+                <h3 className="mb-6 text-2xl font-semibold text-center text-primary">
+                  Send Us a Message
+                </h3>
+                <CustomInputField
+                  name="name"
+                  label="Full Name"
+                  placeholder="Enter your name"
+                  type="text"
+                  control={form.control}
+                />
+                <CustomInputField
+                  name="email"
+                  label="Email"
+                  placeholder="Enter your email"
+                  type="email"
+                  control={form.control}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Type your message here..."
+                          className="min-h-[120px]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full">
+                  Submit
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </div>

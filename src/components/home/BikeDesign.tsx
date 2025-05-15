@@ -4,46 +4,49 @@ import { Link } from "react-router-dom";
 
 export default function BikeDesign() {
   return (
-    <section className="overflow-hidden h-[70%] xl:px-0 text-white container mx-auto opacity-90">
-      <div className="relative gap-5  ">
-        <div className="relative w-full">
-          {/* Image - background layer */}
-          <img
-            src={bikeImage24}
-            alt="MT76 Featured Bike"
-            className="relative z-10 hidden w-full opacity-60 lg:block "
-          />
+    <section className="relative w-full h-[56vh] md:h-[80vh]  flex items-center justify-center text-white">
+      {/* Background Image */}
+      <img
+        src={bikeImage24}
+        alt="MT76 Featured Bike"
+        className="absolute inset-0 object-cover w-full h-full opacity-70"
+      />
 
-          {/* Title over image */}
-          <div className="absolute -z-0 top-36 left-10">
-            <h2 className="text-4xl font-bold tracking-wide uppercase">
-              BIKE SHOP
-            </h2>
-            <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-              MT76
-            </h1>
-          </div>
+      {/* Overlay to enhance text visibility */}
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* Content */}
+      <div className="container relative z-10 flex flex-col items-center justify-between h-full px-6 mx-auto lg:flex-row">
+        {/* Left: Title */}
+        <div className="max-w-lg">
+          <h2 className="text-3xl font-bold tracking-wide uppercase md:text-4xl">
+            Bike Shop
+          </h2>
+          <h1 className="mt-4 text-6xl font-extrabold leading-tight md:text-7xl">
+            MT76
+          </h1>
         </div>
 
-        {/* Offer Section */}
-        <div className="absolute z-50 right-10 bottom-28 w-96">
-          <h2 className="mb-4 text-3xl font-bold uppercase">
+        {/* Right: Offer Section */}
+        <div className="max-w-md p-8 mt-10 shadow-lg bg-white/10 backdrop-blur-md rounded-xl lg:mt-0">
+          <h2 className="mb-4 text-2xl font-bold uppercase md:text-3xl">
             For Popular Bikes
           </h2>
-          <p className="mb-6 leading-relaxed text-gray-300">
-            <span className="font-bold text-white">Bike Shop</span> is the
-            latest and greatest place to grab high-quality motorcycles. We offer
-            custom bikes, great prices, and even trade-ins. Discover amazing
-            deals and get riding today.
+          <p className="mb-6 text-sm leading-relaxed text-gray-200">
+            <span className="font-bold text-white">Bike Shop</span> is your
+            destination for high-quality motorcycles. Get custom rides,
+            unbeatable prices, and easy trade-ins.
           </p>
-          <h3 className="text-2xl font-bold uppercase">
-            Now At <span className="text-3xl bg-orange-500 ">$1250</span>
+          <h3 className="text-xl font-bold uppercase md:text-2xl">
+            Now At{" "}
+            <span className="px-2 py-1 text-3xl bg-orange-500 rounded-lg">
+              $1250
+            </span>
           </h3>
 
           <Link to="/bikes">
-            <button className="flex px-6 py-3 mt-6 text-sm font-semibold text-white transition bg-orange-500 rounded-lg shadow-md hover:bg-red-700">
-              See More
-              <ArrowRight />
+            <button className="flex items-center gap-2 px-6 py-3 mt-6 text-sm font-semibold text-white transition bg-orange-500 rounded-lg hover:bg-orange-600">
+              See More <ArrowRight size={18} />
             </button>
           </Link>
         </div>

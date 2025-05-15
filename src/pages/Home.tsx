@@ -22,7 +22,7 @@ const Home = () => {
         <div className="">
           <Banner />
         </div>
-        <div className="py-8">
+        <div className="py-8 bg-gray-100">
           <HeroSection />
         </div>
         <div className="py-4">
@@ -35,7 +35,7 @@ const Home = () => {
 
         <div className="container mx-auto my-16 ">
           <div className="text-center ">
-            <h5 className="text-center uppercase text-orange-500">
+            <h5 className="text-center text-orange-500 uppercase">
               Check it out
             </h5>
             <h2 className="text-4xl font-extrabold text-gray-900 md:text-5xl">
@@ -55,7 +55,7 @@ const Home = () => {
           <NewProducts />
           <div className="flex items-center justify-center ">
             <Link to="/bikes">
-              <button className="flex px-6 py-3 mt-6 text-sm font-semibold text-white transition bg-orange-500 rounded-lg shadow-md hover:orange-600">
+              <button className="flex px-6 py-3 mt-6 text-sm font-semibold text-white transition bg-orange-500 rounded-lg shadow-md hover:bg-orange-600">
                 VIEW ALL
                 <ArrowRight />
               </button>

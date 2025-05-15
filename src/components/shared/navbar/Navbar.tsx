@@ -14,19 +14,18 @@ import {
 import { TUser } from "@/types/types";
 
 // brand fro logo
-import brand from "@/assets/images/logo/Bike_Shop_Logo.svg";
+import brand from "@/assets/images/logo/Bike_Shop_Logo-y.png";
 //
 
 import { selectCurrentToken } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
+import { menuList } from "@/utils/menu";
 import { verifyToken } from "@/utils/verifyToken";
 import { useEffect, useState } from "react";
-import { menuList } from "@/utils/menu";
-import { useNavigate } from "react-router-dom";
+import { FaSearch, FaUser } from "react-icons/fa";
 import { MdShoppingBag } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 //
 const Navbar = () => {
   const token = useAppSelector(selectCurrentToken);
@@ -63,7 +62,7 @@ const Navbar = () => {
   const CartIcon = (
     <Link
       to="/cart"
-      className="relative p-0 transition-all duration-300 hover:scale-105 text-lg"
+      className="relative p-0 text-lg transition-all duration-300 hover:scale-105"
     >
       <MdShoppingBag
         className={header ? "text-black text-3xl" : "text-black text-3xl"}
@@ -86,7 +85,7 @@ const Navbar = () => {
             : " shadow-sm bg-white text-blck py-4 md:py-2 px-2 lg:px-20"
         }
       >
-        <div className="container flex gap-8 items-center justify-between px-4 mx-auto lg:px-0">
+        <div className="container flex items-center justify-between gap-8 px-4 mx-auto lg:px-0">
           {/* Left Side - Logo */}
           <div className="flex items-center">
             <Link to={"/"}>
@@ -101,12 +100,12 @@ const Navbar = () => {
           </div>
 
           {/* Middle - Navigation Links */}
-          <nav className="w-full md:w-2/4 md:flex flex-col justify-center gap-2 text-center py-2 hidden relative">
+          <nav className="relative flex-col justify-center hidden w-full gap-2 py-2 text-center md:w-2/4 md:flex">
             {/* top */}
             <div className={header ? "hidden" : ""}>{/* <Filter /> */}</div>
             {/* bottom */}
             <div className="py-1">
-              <ul className="flex flex-wrap uppercase  py-1 font-semibold text-base justify-center ">
+              <ul className="flex flex-wrap justify-center py-1 text-base font-semibold uppercase ">
                 {menuList.map((item) => (
                   <li
                     key={item.id}
@@ -131,15 +130,15 @@ const Navbar = () => {
                     </Link>
 
                     {item.children && hoveredMenu === item.id && (
-                      <div className="absolute left-0 top-8 z-40 py-3 transition decoration-500 ease-in bg-white">
-                        <ul className=" grid grid-cols-2 gap-4 group-hover:flex bg-white p-6 w-96 text-left">
+                      <div className="absolute left-0 z-40 py-3 transition ease-in bg-white top-8 decoration-500">
+                        <ul className="grid grid-cols-2 gap-4 p-6 text-left bg-white group-hover:flex w-96">
                           {item.children.map((child, index) => (
                             <li key={index}>
                               <button
                                 onClick={() =>
                                   handleCategoryClick(child.category)
                                 }
-                                className="text-gray-700 hover:text-orange-500 whitespace-nowrap transition-colors duration-200"
+                                className="text-gray-700 transition-colors duration-200 hover:text-orange-500 whitespace-nowrap"
                               >
                                 {child.name}
                               </button>
@@ -156,7 +155,7 @@ const Navbar = () => {
           </nav>
 
           {/* Right Side - Cart & Login/Profile */}
-          <div className="items-center hidden md:gap-6 gap-2 lg:flex">
+          <div className="items-center hidden gap-2 md:gap-6 lg:flex">
             <Link to={"/search"} className="">
               <FaSearch />
             </Link>
@@ -223,7 +222,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu List */}
                 <div className="flex flex-col gap-4 mt-6 mb-6">
-                  <ul className="block capitalize gap-2 py-1 font-semibold text-base justify-center ">
+                  <ul className="justify-center block gap-2 py-1 text-base font-semibold capitalize ">
                     {menuList.map((item) => (
                       <li
                         key={item.id}
@@ -248,15 +247,15 @@ const Navbar = () => {
                         </Link>
 
                         {item.children && hoveredMenu === item.id && (
-                          <div className=" transition decoration-500 ease-in bg-white">
-                            <ul className=" group-hover:flex bg-white px-2 py-2 text-left">
+                          <div className="transition ease-in bg-white decoration-500">
+                            <ul className="px-2 py-2 text-left bg-white group-hover:flex">
                               {item.children.map((child, index) => (
                                 <li key={index}>
                                   <button
                                     onClick={() =>
                                       handleCategoryClick(child.category)
                                     }
-                                    className="text-gray-700 hover:text-orange-500 whitespace-nowrap transition-colors duration-200"
+                                    className="text-gray-700 transition-colors duration-200 hover:text-orange-500 whitespace-nowrap"
                                   >
                                     {child.name}
                                   </button>
