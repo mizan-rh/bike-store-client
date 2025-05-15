@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../shared/Footer";
 import ScrollToTop from "../shared/ScrollToTop";
 import Navber from "../shared/navbar/Navbar";
+import Footer from "../shared/Footer";
+// import TopNevigetion from "../ui/TopNevigetion";
 
 const MainLayout = () => {
   return (

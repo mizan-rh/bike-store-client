@@ -2,20 +2,23 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
-import img2 from "@/assets/Banner-image/image/bike-banner-2.jpg";
-import img3 from "@/assets/Banner-image/image/bike-banner-3.jpg";
-import img4 from "@/assets/Banner-image/image/bike-banner-4.jpg";
-import img5 from "@/assets/Banner-image/image/bike-banner-5.jpg";
-import img6 from "@/assets/Banner-image/image/bike-banner-6.jpg";
-import img7 from "@/assets/Banner-image/image/bike-banner-7.jpg";
-// import { useNavigate } from "react-router-dom";
-// import { Button } from "../ui/button";
-export default function HeroSlider() {
-  // const navigate = useNavigate();
+import {
+  default as img1,
+  default as img6,
+} from "@/assets/Banner-image/Wallpaper Bmw K R Bike (1).jpg";
+import img2 from "@/assets/Banner-image/1401134.jpg";
+import img4 from "@/assets/Banner-image/wp1906398-mv-agusta-wallpapers.jpg";
+import img5 from "@/assets/Banner-image/2914395.jpg";
+import {
+  default as img3,
+  default as img7,
+} from "@/assets/Banner-image/Wallpaper Bmw K R Bike.jpg";
+import SlideContent from "./SliderContent";
 
+export default function HeroSlider() {
   return (
     <div className="container mx-auto">
-      <div className="relative w-full">
+      <div className="relative w-full max-h-screen ">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -28,148 +31,66 @@ export default function HeroSlider() {
           }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper h-screen"
+          className="mySwiper h-[70vh]"
         >
-          {/* Slide 1 */}
-          <SwiperSlide>
-            <div className="relative gap-5">
-              <div className="relative">
-                {/* Image - background layer */}
-                <img
-                  src={img2}
-                  alt="MT76 Featured Bike"
-                  className="relative w-full z-100"
-                />
+          {/* Slide  */}
 
-                {/* Title over image */}
-                <div className="absolute z-10 top-36 left-10 md:left-20 text-white">
-                  <h2 className="text-4xl font-bold tracking-wide uppercase">
-                    BIKE SHOP
-                  </h2>
-                  <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-                    MT76
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* Slide 2 */}
-          <SwiperSlide>
-            <div className="relative gap-5">
-              <div className="relative">
-                {/* Image - background layer */}
-                <img
-                  src={img3}
-                  alt="MT76 Featured Bike"
-                  className="relative w-full z-100"
-                />
-
-                {/* Title over image */}
-                <div className="absolute z-10 top-36 left-10 md:left-20 text-white">
-                  <h2 className="text-4xl font-bold tracking-wide uppercase">
-                    BIKE SHOP
-                  </h2>
-                  <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-                    MT76
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* Slide 3 */}
-          <SwiperSlide>
-            <div className="relative gap-5">
-              <div className="relative">
-                {/* Image - background layer */}
-                <img
-                  src={img4}
-                  alt="MT76 Featured Bike"
-                  className="relative w-full z-100"
-                />
-
-                {/* Title over image */}
-                <div className="absolute z-10 top-36 left-10 md:left-20 text-white">
-                  <h2 className="text-4xl font-bold tracking-wide uppercase">
-                    BIKE SHOP
-                  </h2>
-                  <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-                    MT76
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* Slide 4 */}
-          <SwiperSlide>
-            <div className="relative gap-5">
-              <div className="relative">
-                {/* Image - background layer */}
-                <img
-                  src={img5}
-                  alt="MT76 Featured Bike"
-                  className="relative w-full z-100"
-                />
-
-                {/* Title over image */}
-                <div className="absolute z-10 top-36 left-10 md:left-20 text-white">
-                  <h2 className="text-4xl font-bold tracking-wide uppercase">
-                    BIKE SHOP
-                  </h2>
-                  <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-                    MT76
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* Slide 5 */}
-          <SwiperSlide>
-            <div className="relative gap-5">
-              <div className="relative">
-                {/* Image - background layer */}
-                <img
-                  src={img6}
-                  alt="MT76 Featured Bike"
-                  className="relative w-full z-100"
-                />
-
-                {/* Title over image */}
-                <div className="absolute z-10 top-36 left-10 md:left-20 text-white">
-                  <h2 className="text-4xl font-bold tracking-wide uppercase">
-                    BIKE SHOP
-                  </h2>
-                  <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-                    MT76
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* Slide 6 */}
-          <SwiperSlide>
-            <div className="relative gap-5">
-              <div className="relative">
-                {/* Image - background layer */}
-                <img
-                  src={img7}
-                  alt="MT76 Featured Bike"
-                  className="relative w-full z-100"
-                />
-
-                {/* Title over image */}
-                <div className="absolute z-10 top-36 left-10 md:left-20 text-white">
-                  <h2 className="text-4xl font-bold tracking-wide uppercase">
-                    BIKE SHOP
-                  </h2>
-                  <h1 className="mt-2 text-6xl font-extrabold leading-tight lg:text-8xl">
-                    MT76
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+          {slideData.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <SlideContent
+                h5={slide.h5}
+                title={slide.title}
+                subtitle={slide.subtitle}
+                img={slide.img}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
   );
 }
+const slideData = [
+  {
+    h5: "2023 Road King",
+    title: "Power That Commands the Road",
+    subtitle: "Rule every ride with precision and speed.",
+    img: img1,
+  },
+  {
+    h5: "Comfort Ride",
+    title: "Where Comfort Meets Performance",
+    subtitle: "Engineered for those who ride far and ride bold.",
+    img: img2,
+  },
+  {
+    h5: "Adventure Tour",
+    title: "Embrace the Spirit of Adventure",
+    subtitle: "Explore the world on two wheels, your way.",
+    img: img3,
+  },
+  {
+    h5: "Royal Drive",
+    title: "Feel the Rush of Royal Power",
+    subtitle: "The road is yours—own it with every ride.",
+    img: img4,
+  },
+  {
+    h5: "Bold & Stylish",
+    title: "Ride in Supreme Style",
+    subtitle: "Built for bold journeys and unforgettable moments.",
+    img: img5,
+  },
+  {
+    h5: "Bold & Stylish",
+    title: "Ride in Supreme Style",
+    subtitle: "Built for bold journeys and unforgettable moments.",
+    img: img6,
+  },
+  {
+    h5: "Bold & Stylish",
+    title: "Ride in Supreme Style",
+    subtitle: "Built for bold journeys and unforgettable moments.",
+    img: img7,
+  },
+];
